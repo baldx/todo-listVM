@@ -1,0 +1,283 @@
+@font-face {
+    font-family: Comfotaa;
+    src: url("/assets/Comfortaa-VariableFont_wght.ttf");
+}
+
+:root {
+    --dark-black: #272829;
+    --dark-navy: #61677A;
+    --light-navy: #D8D9DA;
+    --cream: #FFF6E0;
+}
+
+body {
+    margin: 0px;
+    font-family: Comfotaa;
+    background-color: var(--cream);
+}
+
+/*HEADER*/
+
+#content > header {
+    height: 20vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--dark-navy);
+    justify-items: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+}
+
+#content > header img {
+    max-height: 15vh;
+}
+
+#content > header h1 {
+    font-size: 5em;
+    color: var(--cream);
+}
+
+/*MAIN*/
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 80vh;
+}
+
+aside {
+    font-size: 1.3em;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+}
+
+aside header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+aside header h2 {
+    justify-self: end;
+}
+
+aside header button {
+    box-sizing: border-box;
+    background: transparent;
+    border: 2px solid var(--dark-black);
+    border-radius: 5px;
+    font-size: 2em;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside ul li {
+    margin: 16px;
+}
+
+aside ul li button {
+    border: none;
+    border: 2px solid var(--dark-black);
+    background: transparent;
+    font-size: 1em;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+aside header button:active, #tasks header button:active, aside ul li button:active, #modal button[type="submit"]:hover, #project button[type="submit"]:hover {
+    background-color: var(--light-navy);
+    transition: 50ms;
+}
+
+hr {
+    height: 2px;
+    background-color: black;
+    border: none;
+    border-radius: 15px;
+    width: 16em;
+}
+
+aside ul {
+    line-height: 2em;
+    font-weight: 700;
+    list-style-type: lower-latin;
+}
+
+/*TASKS*/
+
+#tasks header {
+    font-size: 3em;
+    margin: 0.3em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+#tasks header button {
+    box-sizing: border-box;
+    background: transparent;
+    border: 2px solid var(--dark-black);
+    border-radius: 5px;
+    font-size: 1em;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task {
+    border: 3px solid var(--dark-black);
+    margin: 1em;
+    height: 3em;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.title, .description, .due, .wrapper {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.task button {
+    height: 1.7em;
+    width: 4em;
+    font-size: 1.3em;
+}
+
+.priority {
+    border: none;
+    border: 2px solid var(--dark-black);
+    border-radius: 10px;
+}
+
+/*PRIORITIES*/
+
+.High {
+    background-color: red;
+}
+
+.Medium {
+    background-color: yellow;
+}
+
+.Low {
+    background-color: rgb(45, 204, 45);
+}
+
+/*STATUS*/
+
+.Done {
+    background-color: rgb(45, 204, 45);
+}
+
+.UnDone {
+    background-color: red;
+}
+
+/*MODAL*/
+
+.popUpTask {
+    display: none;
+}
+
+#modal {
+    margin: 20px;
+    padding: 1em;
+    height: 250px;
+    width: 500px;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(37, 37, 43) 0px 7px 29px 0px;
+    border-radius: 5px;
+    position: absolute;
+    top: 30vh;
+    left: 35vw;
+    background-color: var(--cream);
+    display: grid;
+}
+
+#modal > input {
+    border: 2px solid var(--dark-black);
+    outline: none;
+    padding: 0.4em;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+
+#modal > label, #project > label {
+    font-size: 1.5em;
+}
+
+.priority-group {
+    font-size: 1.1em;
+}
+
+#modal button[type="submit"] {
+    border: 2px solid var(--dark-black);
+    border-radius: 10px;
+    font-size: 1.3em;
+    padding: 0.3em;
+}
+
+/*PROJECT*/
+
+.popUpProject {
+    display: none;
+}
+
+#project {
+    margin: 20px;
+    padding: 1em;
+    height: 100px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(37, 37, 43) 0px 7px 29px 0px;
+    border-radius: 5px;
+    position: absolute;
+    top: 30vh;
+    left: 35vw;
+    background-color: var(--cream);
+    display: grid;
+}
+
+#project button[type="submit"] {
+    border: 2px solid var(--dark-black);
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding: 0.3em;
+    grid-column: 1 / 3;
+}
+
+#project > input {
+    border: 2px solid var(--dark-black);
+    outline: none;
+    padding: 0.3em;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+
+.delete-task {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.delete-task:hover {
+    background-color: var(--light-navy);
+}

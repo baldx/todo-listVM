@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Todo List</title>
+</head>
+<body>
+    <div id="content">
+        <header>
+            <img src="/assets/monochrome_large.png" alt="logo">
+            <h1>Todo List</h1>
+        </header>
+
+        <main>
+            <aside>
+                <header>
+                    <h2>Projects</h2>
+                    <button class="addProject">+</button>
+                </header>
+                <hr>
+                <ul>
+                    <li>
+                        <button>Construction of a robot</button>
+                        <button class="delete-project">-</button>
+                    </li>
+                </ul>
+            </aside>
+            
+            <div id="tasks">
+                <header>
+                    Tasks
+                    <button class="addTask">+</button>
+                </header>
+
+                <div class="task">
+                    <button class="priority High">High</button>
+                    <div class="title">Task</div>
+                    <div class="description">Some interesting stuff</div>
+                    <div class="due">06/04/23</div>
+                    <div class="wrapper">
+                        <label for="checkbox">Status:</label>
+                        <input type="checkbox" name="checkbox" id="checkbox">
+                    </div>
+                    <button class="delete-task">Delete</button>
+                </div>
+            </div>
+    </div>
+        </main>
+    </div>
+    <div class="popUpTask">
+        
+    </div>
+    <div class="popUpProject">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "todo-listvm",
+  "version": "1.0.0",
+  "description": "todo list made with TOD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baldx/todo-listVM.git"
+  },
+  "author": "baldx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baldx/todo-listVM/issues"
+  },
+  "homepage": "https://github.com/baldx/todo-listVM#readme",
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
