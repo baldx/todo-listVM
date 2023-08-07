@@ -50,8 +50,18 @@ function getPriorityValue() {
     else if (document.querySelector("input[name='priority']:checked").value == "low") return "Low";
 }
 
+const removeBtn = document.querySelectorAll(".delete-task");
 
-function showTask() {
+removeBtn.forEach(e => {
+    e.addEventListener("click", () => {
+        e.parentElement.remove()
+        taskLibrary.pop()
+        console.log(taskLibrary);
+    })
+})
+
+
+function showTask(array) {
     const container = document.querySelector("#tasks");
     const task = document.createElement("div");
     const btnPriority = document.createElement("button");
@@ -61,6 +71,7 @@ function showTask() {
     const checkStatusDiv = document.createElement("div");
     const label = document.createElement("label");
     const checkbox = document.createElement("input")
+    const remove = document.createElement("button");
 
     container.appendChild(task);
     task.classList.add("task");
@@ -93,6 +104,16 @@ function showTask() {
     checkbox.setAttribute("type", "checkbox")
     checkbox.setAttribute("name", "checkbox")
     checkbox.setAttribute("id", "checkbox")
+
+    task.appendChild(remove);
+    remove.classList.add("delete-task");
+    remove.innerHTML = "Delete"
+
+    remove.addEventListener("click", () => {
+        remove.parentElement.remove();
+        taskLibrary.splice(taskLibrary.indexOf(array), 1)
+        console.log(taskLibrary);
+    })
 }
 
 export default taskLogic();
