@@ -69,6 +69,12 @@ function addToList(array) {
         deleteBtn.parentElement.remove();
         projectLibrary.splice(projectLibrary.indexOf(array), 1)
     })
+
+    btn.addEventListener("click", () => {
+        console.log(task);
+    })
 }
+
+
 
 export default logic();
