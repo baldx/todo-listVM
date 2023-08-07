@@ -25,8 +25,17 @@ const submitBtn = document.querySelector(".submit");
 
 let taskLogic = () => {
     submitBtn.addEventListener("click", element => {
-        addTaskToLibrary();
-        element.preventDefault();
+
+        if (rules()) {
+            addTaskToLibrary();
+            element.preventDefault();
+        }
+        else {
+            element.preventDefault();
+            alert("We would like an input D:")
+        }
+
+        
     })
 }
 
@@ -42,12 +51,19 @@ function resetForm() {
     taskInput.value = "";
     descriptionInput.value = "";
     dueDateInput.value = "";
+    document.querySelector("input[name='priority']:checked").checked = false;
 }
 
 function getPriorityValue() {
     if (document.querySelector("input[name='priority']:checked").value == "high") return "High";
     else if (document.querySelector("input[name='priority']:checked").value == "medium") return "Medium";
     else if (document.querySelector("input[name='priority']:checked").value == "low") return "Low";
+    else return false;
+}
+
+function rules() {
+    if (taskInput.value == "" || dueDateInput.value == "" || getPriorityValue() == false) return false;
+    else return true;
 }
 
 const removeBtn = document.querySelectorAll(".delete-task");
