@@ -114,6 +114,24 @@ function showTask(array) {
         taskLibrary.splice(taskLibrary.indexOf(array), 1)
         console.log(taskLibrary);
     })
+
+    btnPriority.addEventListener("click", () => {
+        if (btnPriority.innerHTML == "High") {
+            btnPriority.classList.remove("High");
+            btnPriority.classList.add("Low");
+            btnPriority.innerHTML = "Low";
+        }
+        else if (btnPriority.innerHTML == "Low") {
+            btnPriority.classList.remove("Low");
+            btnPriority.classList.add("Medium");
+            btnPriority.innerHTML = "Medium";
+        }
+        else if (btnPriority.innerHTML == "Medium") {
+            btnPriority.classList.remove("Medium")
+            btnPriority.classList.add("High");
+            btnPriority.innerHTML = "High"
+        }
+    })
 }
 
 export default taskLogic();
