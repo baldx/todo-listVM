@@ -37,10 +37,15 @@ function addToList() {
     const ul = document.querySelector("ul");
     const li = document.createElement("li");
     const btn = document.createElement("button");
+    const deleteBtn = document.createElement("button");
     
     ul.appendChild(li);
     li.appendChild(btn)
     btn.innerHTML = titleInput.value
+    li.appendChild(deleteBtn);
+    deleteBtn.classList.add("delete-project")
+    deleteBtn.innerHTML = "🗑️"
+    deleteBtn.style.margin = "8px"
 }
 
 export default logic();
