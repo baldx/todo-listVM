@@ -84,10 +84,8 @@ function showTask(array) {
     const titleDiv = document.createElement("div");
     const descriptionDiv = document.createElement("div");
     const dueDateDiv = document.createElement("div");
-    const checkStatusDiv = document.createElement("div");
-    const label = document.createElement("label");
-    const checkbox = document.createElement("input")
     const remove = document.createElement("button");
+    const status = document.createElement("button");
 
     container.appendChild(task);
     task.classList.add("task");
@@ -109,17 +107,10 @@ function showTask(array) {
     dueDateDiv.innerHTML = dueDateInput.value;
     dueDateDiv.classList.add("due");
 
-    task.appendChild(checkStatusDiv);
-    checkStatusDiv.classList.add("wrapper");
-
-    checkStatusDiv.appendChild(label);
-    label.setAttribute("for", "checkbox");
-    label.innerHTML = "Status:"
-
-    checkStatusDiv.appendChild(checkbox);
-    checkbox.setAttribute("type", "checkbox")
-    checkbox.setAttribute("name", "checkbox")
-    checkbox.setAttribute("id", "checkbox")
+    task.appendChild(status);
+    status.classList.add("UnDone");
+    status.classList.add("check");
+    status.innerHTML = "Undone"
 
     task.appendChild(remove);
     remove.classList.add("delete-task");
@@ -148,6 +139,19 @@ function showTask(array) {
             btnPriority.innerHTML = "High"
         }
     })
+
+    status.addEventListener("click", () => {
+        if (status.innerHTML == "Undone") {
+            status.classList.remove("UnDone");
+            status.classList.add("Done");
+            status.innerHTML = "Done";
+        }
+        else if (status.innerHTML == "Done") {
+            status.classList.remove("Done");
+            status.classList.add("UnDone");
+            status.innerHTML = "Undone";
+        }
+})
 }
 
 export default taskLogic();

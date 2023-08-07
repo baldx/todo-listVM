@@ -38,3 +38,18 @@ priorityBtn.forEach(e => {
         }
     })
 });
+
+const status = document.querySelector(".check");
+
+status.addEventListener("click", () => {
+    if (status.innerHTML == "Undone") {
+        status.classList.remove("UnDone");
+        status.classList.add("Done");
+        status.innerHTML = "Done";
+    }
+    else if (status.innerHTML == "Done") {
+        status.classList.remove("Done");
+        status.classList.add("UnDone");
+        status.innerHTML = "Undone";
+    }
+})
