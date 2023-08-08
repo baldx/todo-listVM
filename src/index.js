@@ -16,7 +16,6 @@ addTaskBtn.addEventListener("click", () => {
 })
 
 
-
 const priorityBtn = document.querySelectorAll(".priority");
 
 priorityBtn.forEach(e => {
@@ -41,6 +40,21 @@ priorityBtn.forEach(e => {
 
 const status = document.querySelector(".check");
 
+window.onload = () => {
+   if (status.innerHTML == "Done") {
+    status.classList.add("Done");
+    status.innerHTML = "Done";
+    } 
+    else if (status.innerHTML == "Undone") {
+        status.classList.add("UnDone")
+        status.innerHTML = "Undone"
+    }
+}
+
+
+
+status.innerHTML = localStorage.getItem("status");
+
 status.addEventListener("click", () => {
     if (status.innerHTML == "Undone") {
         status.classList.remove("UnDone");
@@ -52,4 +66,6 @@ status.addEventListener("click", () => {
         status.classList.add("UnDone");
         status.innerHTML = "Undone";
     }
+
+    localStorage.setItem("status", status.innerHTML);
 })
