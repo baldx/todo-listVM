@@ -19,6 +19,9 @@ addTaskBtn.addEventListener("click", () => {
 const priorityBtn = document.querySelector(".priority");
 priorityBtn.innerHTML = localStorage.getItem("priority");
 
+if (priorityBtn.innerHTML == "") priorityBtn.innerHTML = "High";
+
+
 priorityBtn.addEventListener("click", () => {
     if (priorityBtn.innerHTML == "High") {
         priorityBtn.classList.remove("High");
@@ -50,6 +53,10 @@ window.onload = () => {
         status.classList.add("UnDone")
         status.innerHTML = "Undone"
     }
+
+    if (priorityBtn.innerHTML == "High") priorityBtn.classList.add("High") 
+    else if (priorityBtn.innerHTML == "Medium") priorityBtn.classList.add("Medium")
+    else if (priorityBtn.innerHTML == "Low") priorityBtn.classList.add("Low")
 }
 
 
