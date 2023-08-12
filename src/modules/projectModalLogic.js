@@ -1,13 +1,14 @@
-let projectLibrary = [
-    {
-        title: "Construction of a robot"
-    }
-]
+const projectLibrary = JSON.parse(localStorage.getItem("projects")) || [];
 
-class project {
-    constructor(title) {
-        this.title = title
-    }
+
+const project = (title) => {
+    projectLibrary.push({
+        title
+    });
+
+    localStorage.setItem("projects", JSON.stringify(projectLibrary));
+
+    return { title }
 }
 
 const submitBtn = document.querySelector(".submitProject");
@@ -31,11 +32,12 @@ let logic = () => {
 
 function addProjectToLibrary() {
     container.style.display = "none";
-    let newProject = new project(titleInput.value)
-    projectLibrary.push(newProject);
-    addToList()
+    let newProject = project(titleInput.value)
+    addToList(newProject)
+    console.log(projectLibrary);
     resetForm()
 }
+
 
 deleteBtn.addEventListener("click", () => {
     deleteBtn.parentElement.remove()
@@ -51,7 +53,8 @@ function resetForm() {
     titleInput.value = ""
 }
 
-function addToList(array) {
+
+function addToList({title}) {
     const ul = document.querySelector("ul");
     const li = document.createElement("li");
     const btn = document.createElement("button");
@@ -59,21 +62,26 @@ function addToList(array) {
     
     ul.appendChild(li);
     li.appendChild(btn)
-    btn.innerHTML = titleInput.value
+
+    btn.innerHTML = title;
+
     li.appendChild(deleteBtn);
     deleteBtn.classList.add("delete-project")
     deleteBtn.innerHTML = "🗑️"
     deleteBtn.style.margin = "8px"
 
     deleteBtn.addEventListener("click", () => {
-        deleteBtn.parentElement.remove();
-        projectLibrary.splice(projectLibrary.indexOf(array), 1)
+        projectLibrary.pop()
+        deleteBtn.parentElement.remove()
+        localStorage.removeItem("delete")
     })
 
     btn.addEventListener("click", () => {
-        console.log(task);
+        console.log("project");
     })
 }
+
+projectLibrary.forEach(addToList)
 
 
 
