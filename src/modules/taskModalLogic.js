@@ -1,31 +1,31 @@
-class task {
-    constructor(task, description, dueDate, priority) {
-        this.task = task;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
-}
+const taskLibrary = JSON.parse(localStorage.getItem("tasks")) || [];
 
-let taskLibrary = [
-    {
-        task: "Task",
-        description: "Some interesting stuff",
-        dueDate: "06/04/23",
-        priority: "High"
-    }
-]
+const task = (task, description, dueDate, priority) => {
+
+    taskLibrary.push({
+        task,
+        description,
+        dueDate,
+        priority
+    })
+
+    localStorage.setItem("tasks", JSON.stringify(taskLibrary));
+
+    return {task, description, dueDate, priority}
+}
 
 const taskInput = document.querySelector("#task");
 const descriptionInput = document.querySelector("#description");
 const dueDateInput = document.querySelector("#due");
+const taskContainer = document.querySelector("#tasks");
+
 
 const container = document.querySelector(".popUpTask");
 const submitBtn = document.querySelector(".submit");
 
+
 let taskLogic = () => {
     submitBtn.addEventListener("click", element => {
-
         if (rules()) {
             addTaskToLibrary();
             element.preventDefault();
@@ -34,16 +34,13 @@ let taskLogic = () => {
             element.preventDefault();
             alert("We would like an input D:")
         }
-
-        
     })
 }
 
 function addTaskToLibrary() {
     container.style.display = "none";
-    let newTask = new task(taskInput.value, descriptionInput.value, dueDateInput.value, getPriorityValue());
-    taskLibrary.push(newTask);
-    showTask();
+    let newTask = task(taskInput.value, descriptionInput.value, dueDateInput.value, getPriorityValue());
+    showTask(newTask)
     resetForm();
 }
 
@@ -58,7 +55,7 @@ function getPriorityValue() {
     if (document.querySelector("input[name='priority']:checked").value == "high") return "High";
     else if (document.querySelector("input[name='priority']:checked").value == "medium") return "Medium";
     else if (document.querySelector("input[name='priority']:checked").value == "low") return "Low";
-    else return false;
+    else return false; 
 }
 
 function rules() {
@@ -66,20 +63,16 @@ function rules() {
     else return true;
 }
 
-const removeBtn = document.querySelectorAll(".delete-task");
+const removeBtn = document.querySelector(".delete-task");
 
-removeBtn.forEach(e => {
-    e.addEventListener("click", () => {
-        e.parentElement.remove()
+
+removeBtn.addEventListener("click", () => {
+        removeBtn.parentElement.remove()
         taskLibrary.pop()
-        console.log(taskLibrary);
     })
-})
 
-
-function showTask(array) {
-    const container = document.querySelector("#tasks");
-    const task = document.createElement("div");
+function showTask({task, description, dueDate, priority}) {
+    const taskDiv = document.createElement("div");
     const btnPriority = document.createElement("button");
     const titleDiv = document.createElement("div");
     const descriptionDiv = document.createElement("div");
@@ -87,39 +80,38 @@ function showTask(array) {
     const remove = document.createElement("button");
     const status = document.createElement("button");
 
-    container.appendChild(task);
-    task.classList.add("task");
+    taskContainer.appendChild(taskDiv);
+    taskDiv.classList.add("task");
 
-    task.appendChild(btnPriority);
+    taskDiv.appendChild(btnPriority);
     btnPriority.classList.add("priority");
-    btnPriority.classList.add(getPriorityValue())
-    btnPriority.innerHTML = getPriorityValue();
+    btnPriority.classList.add(priority)
+    btnPriority.innerHTML = priority;
 
-    task.appendChild(titleDiv);
-    titleDiv.innerHTML = taskInput.value;
+    taskDiv.appendChild(titleDiv);
+    titleDiv.innerHTML = task;
     titleDiv.classList.add("title");
 
-    task.appendChild(descriptionDiv);
-    descriptionDiv.innerHTML = descriptionInput.value;
+    taskDiv.appendChild(descriptionDiv);
+    descriptionDiv.innerHTML = description;
     descriptionDiv.classList.add("description");
 
-    task.appendChild(dueDateDiv);
-    dueDateDiv.innerHTML = dueDateInput.value;
+    taskDiv.appendChild(dueDateDiv);
+    dueDateDiv.innerHTML = dueDate;
     dueDateDiv.classList.add("due");
 
-    task.appendChild(status);
+    taskDiv.appendChild(status);
     status.classList.add("UnDone");
     status.classList.add("check");
     status.innerHTML = "Undone"
 
-    task.appendChild(remove);
+    taskDiv.appendChild(remove);
     remove.classList.add("delete-task");
     remove.innerHTML = "Delete"
 
     remove.addEventListener("click", () => {
         remove.parentElement.remove();
-        taskLibrary.splice(taskLibrary.indexOf(array), 1)
-        console.log(taskLibrary);
+        console.log(taskLibrary); /*write localStorage*/
     })
 
     btnPriority.addEventListener("click", () => {
@@ -136,7 +128,7 @@ function showTask(array) {
         else if (btnPriority.innerHTML == "Medium") {
             btnPriority.classList.remove("Medium")
             btnPriority.classList.add("High");
-            btnPriority.innerHTML = "High"
+            btnPriority.innerHTML = "High" /*write localStorage*/
         }
     })
 
@@ -149,9 +141,11 @@ function showTask(array) {
         else if (status.innerHTML == "Done") {
             status.classList.remove("Done");
             status.classList.add("UnDone");
-            status.innerHTML = "Undone";
+            status.innerHTML = "Undone"; /*write localStorage*/
         }
-})
+    })
 }
+
+taskLibrary.forEach(showTask)
 
 export default taskLogic();
