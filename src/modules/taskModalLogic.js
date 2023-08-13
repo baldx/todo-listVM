@@ -63,14 +63,6 @@ function rules() {
     else return true;
 }
 
-const removeBtn = document.querySelector(".delete-task");
-
-
-removeBtn.addEventListener("click", () => {
-        removeBtn.parentElement.remove()
-        taskLibrary.pop()
-    })
-
 function showTask({task, description, dueDate, priority}) {
     const taskDiv = document.createElement("div");
     const btnPriority = document.createElement("button");
@@ -132,18 +124,31 @@ function showTask({task, description, dueDate, priority}) {
         }
     })
 
-    status.addEventListener("click", () => {
-        if (status.innerHTML == "Undone") {
-            status.classList.remove("UnDone");
-            status.classList.add("Done");
-            status.innerHTML = "Done";
-        }
-        else if (status.innerHTML == "Done") {
-            status.classList.remove("Done");
-            status.classList.add("UnDone");
-            status.innerHTML = "Undone"; /*write localStorage*/
-        }
+
+    if (status.innerHTML == "") status.innerHTML = "Undone"
+    else if (status.innerHTML == "Done") status.parentElement.remove()
+
+    const statusButtons = document.querySelectorAll(".check")
+
+    statusButtons.forEach(e => {
+        e.addEventListener("click", () => {
+            if (e.innerHTML == "Undone") {
+                e.parentElement.remove();
+                e.innerHTML = "Done"
+                taskLibrary.pop()
+                console.log(taskLibrary);
+            }
+        })
     })
+
+    // status.addEventListener("click", () => {
+    //     if (status.innerHTML == "Undone") {
+    //         status.parentElement.remove();
+    //         status.innerHTML = "Done";
+    //     }
+
+    //     localStorage.setItem("status", "Undone")
+    // })
 }
 
 taskLibrary.forEach(showTask)

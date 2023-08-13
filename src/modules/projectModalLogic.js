@@ -14,7 +14,6 @@ const project = (title) => {
 const submitBtn = document.querySelector(".submitProject");
 const container = document.querySelector(".popUpProject");
 const titleInput = document.querySelector("#titleProject");
-const deleteBtn = document.querySelector(".delete-project");
 
 let logic = () => {
     submitBtn.addEventListener("click", element => {
@@ -37,12 +36,6 @@ function addProjectToLibrary() {
     console.log(projectLibrary);
     resetForm()
 }
-
-
-deleteBtn.addEventListener("click", () => {
-    deleteBtn.parentElement.remove()
-    projectLibrary.pop()
-})
 
 function rules() {
     if (titleInput.value == "") return false;
@@ -77,7 +70,6 @@ function addToList({title}) {
     })
 
     btn.addEventListener("click", () => {
-        console.log("project");
     })
 }
 
